@@ -34,6 +34,6 @@ public class HelloController {
 		
 		List<User> list1 =	userService.getFUser();
 		System.out.println("+++++++++"+list1.get(0).getF_user_name()+"----------");
-	     return "Welcome to start SpringBoot!";
+	     return "Welcome to start SpringBoot!2222";
 	    }
 }
