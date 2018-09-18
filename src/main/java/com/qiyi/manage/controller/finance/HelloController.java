@@ -1,7 +1,9 @@
 package com.qiyi.manage.controller.finance;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties.Tomcat.Resource;
@@ -10,6 +12,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qiyi.manage.entity.Person;
 import com.qiyi.manage.entity.User;
 import com.qiyi.manage.service.finance.IUserService;
 
@@ -27,13 +30,20 @@ public class HelloController {
     private IUserService userService;
 		@RequestMapping("/hello")
 	    public String hello(){
-		List<User> list =	userService.getUser();
-		for(User user:list) {
-			System.out.println(user.getF_user_name()+"----------");
-		}
+//		List<User> list =	userService.getUser();
+//		for(User user:list) {
+//			System.out.println(user.getF_user_name()+"----------");
+//		}
 		
-		List<User> list1 =	userService.getFUser();
+		List<Person> list1 =	userService.getPerson("1");
 		System.out.println("+++++++++"+list1.get(0).getF_user_name()+"----------");
+		List<Person> list2 =	userService.getPerson1("1","admin");
+		System.out.println("+++++++++"+list2.get(0).getF_user_name()+"----------");
+		Map<String,Object> map =new HashMap<String,Object>();
+		map.put("id", "1");
+		map.put("f_name", "admin");
+		List<Person> list3 =	userService.getPerson2(map);
+		System.out.println("+++++++++"+list3.get(0).getF_user_name()+"----------");
 	     return "Welcome to start SpringBoot!2222";
 	    }
 }
