@@ -26,8 +26,13 @@ import com.qiyi.manage.service.finance.IUserService;
 @RequestMapping("/manage")
 public class HelloController {
 	
-	@Autowired
-    private IUserService userService;
+		@Autowired
+		private IUserService userService;
+		
+		@Autowired
+		private MessageSource messageSource;
+		
+		
 		@RequestMapping("/hello")
 	    public String hello(){
 //		List<User> list =	userService.getUser();
@@ -44,6 +49,12 @@ public class HelloController {
 		map.put("f_name", "admin");
 		List<Person> list3 =	userService.getPerson2(map);
 		System.out.println("+++++++++"+list3.get(0).getF_user_name()+"----------");
-	     return "Welcome to start SpringBoot!2222";
+	    
+		Locale locale = LocaleContextHolder.getLocale();
+	    String msg = messageSource.getMessage("username", null, locale);
+	    System.out.println("+++++rttt+++"+msg);
+		return "Welcome to start SpringBoot!2222";
+	     
+	     
 	    }
 }
